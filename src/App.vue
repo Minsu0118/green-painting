@@ -5,7 +5,7 @@
       <div class="header-container">
         <!-- 로고 -->
         <router-link to="/" class="logo" @click="closeMobileMenu">
-          <span class="logo-accent">GREEN</span> PAINTING
+          <span class="logo-accent">그린</span> 나염
         </router-link>
 
         <!-- 데스크톱 전용 네비게이션 메뉴 (768px 이상) -->
@@ -35,7 +35,7 @@
         <div v-if="isMobileMenuOpen" class="mobile-drawer">
           <div class="drawer-header">
             <span class="drawer-badge">MENU</span>
-            <span class="drawer-title">그린페인팅</span>
+            <span class="drawer-title">그린나염</span>
           </div>
           <nav class="mobile-nav-links">
             <router-link to="/" class="mobile-nav-item" @click="closeMobileMenu">
@@ -68,17 +68,25 @@
       <router-view />
     </main>
 
-    <!-- 하단 푸터 -->
+    <!-- 하단 푸터 (사업자번호 제거본) -->
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-info">
-          <h3>그린페인팅 (Green Painting)</h3>
-          <p>의류 나염 및 특수 프린팅 전문 가공 공장</p>
-          <p class="copyright">© 2026 GREEN PAINTING. All rights reserved.</p>
+          <div class="footer-brand">
+            <h3>그린나염</h3>
+            <span class="footer-tagline">의류 나염 및 특수 전사 인쇄 전문 공장</span>
+          </div>
+          <div class="company-details">
+            <p><span>대표전화:</span> 02-2237-0642 &nbsp;|&nbsp; <span>직통(H.P):</span> 010-3664-0642</p>
+            <p><span>주소:</span> 서울특별시 중구 다산로 36가길 22 (신당동) 지하2층 작업실</p>
+          </div>
+          <p class="copyright">© 2026 그린나염. All rights reserved.</p>
         </div>
+
         <div class="footer-contact">
-          <span class="contact-label">공식 접수처</span>
-          <p class="email-text">contact@greenpainting.com</p>
+          <span class="contact-label">공식 도안 및 견적 접수</span>
+          <a href="mailto:water1234567@naver.com" class="email-text">water1234567@naver.com</a>
+          <p class="business-hours">운영시간: 평일 09:00 - 18:00 (주말/공휴일 휴무)</p>
         </div>
       </div>
     </footer>
@@ -312,7 +320,7 @@ body {
   z-index: 98;
 }
 
-/* 드로어 & 페이드 트랜지션 */
+/* 트랜지션 */
 .drawer-enter-active, .drawer-leave-active {
   transition: all 0.3s ease;
 }
@@ -337,7 +345,7 @@ body {
 .site-footer {
   background: #0f252a;
   color: #8da2a6;
-  padding: 45px 20px;
+  padding: 50px 20px 40px;
   border-top: 1px solid #1a383f;
 }
 
@@ -346,46 +354,84 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
 }
 
-.footer-info h3 {
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-brand h3 {
   color: #f1f8f9;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
 
-.footer-info p {
+.footer-tagline {
   font-size: 0.88rem;
-  color: #8da2a6;
+  color: #72969b;
+}
+
+.company-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.86rem;
+  color: #9cb4b8;
+}
+
+.company-details p span {
+  color: #6d8a8e;
+  margin-right: 4px;
 }
 
 .copyright {
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 0.8rem;
-  color: #5c7478;
+  color: #557074;
 }
 
 .footer-contact {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .contact-label {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 1px;
   color: #48b5c4;
-  display: block;
-  margin-bottom: 4px;
 }
 
 .email-text {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #d6ebed;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #e2f4f6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.email-text:hover {
+  color: #48b5c4;
+}
+
+.business-hours {
+  font-size: 0.82rem;
+  color: #72969b;
 }
 
 /* 모바일 미디어 쿼리 (768px 이하) */
@@ -402,9 +448,18 @@ body {
   .footer-container {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+  }
+  .footer-brand {
+    justify-content: center;
   }
   .footer-contact {
     text-align: center;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
   }
 }
 </style>

@@ -38,7 +38,7 @@
     <section class="features-section">
       <div class="section-header">
         <span class="sub-title">CORE ADVANTAGES</span>
-        <h2>맑고 섬세한 그린페인팅의 가공 기술</h2>
+        <h2>섬세한 그린나염의 가공 기술</h2>
         <p>26년 노하우로 원단의 촉감과 도안의 디테일을 자연스럽게 연결합니다.</p>
       </div>
 
@@ -46,7 +46,7 @@
         <div class="glass-feature-card">
           <div class="icon-circle">🌊</div>
           <h3>원단 맞춤 정밀 조색</h3>
-          <p>원단 결마다 잉크가 유연하게 안착되도록 정밀 조색하여, 반복 세탁에도 갈라짐과 물빠짐 없는 내구성을 구현합니다.</p>
+          <p>원단 결마다 잉크가 유연하게 안착되도록 정밀 조색합니다.</p>
         </div>
 
         <div class="glass-feature-card">
@@ -58,7 +58,7 @@
         <div class="glass-feature-card">
           <div class="icon-circle">✉️</div>
           <h3>간편한 1:1 직통 이메일 견적</h3>
-          <p>회원가입 없이 대용량 도안 파일(AI, PSD)을 메일로 보내주시면 신속하고 투명하게 상담을 도와드립니다.</p>
+          <p>회원가입 없이 도안 파일(AI)을 메일로 보내주시면 신속하고 투명하게 상담을 도와드립니다.</p>
         </div>
       </div>
     </section>
@@ -99,7 +99,7 @@
 
       <div class="preview-cta">
         <router-link to="/collection" class="view-all-btn">
-          전체 46개 작업 샘플 보러가기 ➔
+          작업 샘플 보러가기 ➔
         </router-link>
       </div>
     </section>
@@ -118,7 +118,7 @@
       </div>
     </section>
 
-    <!-- 5. 소셜 & 빠른 소통 채널 (카카오톡 채널 & 인스타그램) -->
+    <!-- 5. 소셜 & 빠른 소통 채널 (카카오톡 채널 & 인스타그램)
     <section class="social-channels-section">
       <div class="social-header">
         <span class="social-tag">CONNECT WITH US</span>
@@ -127,7 +127,6 @@
       </div>
 
       <div class="social-grid">
-        <!-- 카카오톡 채널 카드 -->
         <a 
           href="javascript:void(0)" 
           class="social-card kakao-card"
@@ -144,7 +143,6 @@
           <span class="arrow-circle">➔</span>
         </a>
 
-        <!-- 인스타그램 카드 -->
         <a 
           href="javascript:void(0)" 
           class="social-card insta-card"
@@ -162,6 +160,7 @@
         </a>
       </div>
     </section>
+    -->
   </div>
 </template>
 

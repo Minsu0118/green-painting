@@ -1,89 +1,91 @@
 <template>
-  <div class="contact-container">
-    <!-- 부드러운 물방울 배경 블롭 -->
+  <div class="contact-page-wrapper">
+    <!-- 화면 양 끝까지 확장되는 부드러운 물방울 배경 블롭 -->
     <div class="water-blob blob-1"></div>
     <div class="water-blob blob-2"></div>
 
-    <!-- 헤더 섹션 -->
-    <section class="contact-header">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        CONTACT US
-      </div>
-      <h1 class="page-title">
-        도안 및 견적 <span class="gradient-text">문의 안내</span>
-      </h1>
-      <p class="page-desc">
-        그린페인팅은 회원가입이나 복잡한 절차 없이 <strong>공식 이메일</strong>을 통해 직접 빠르고 정확한 견적 상담을 진행합니다.
-      </p>
-    </section>
+    <div class="contact-content-container">
+      <!-- 헤더 섹션 -->
+      <section class="contact-header">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          CONTACT US
+        </div>
+        <h1 class="page-title">
+          도안 및 견적 <span class="gradient-text">문의 안내</span>
+        </h1>
+        <p class="page-desc">
+          그린나염은 회원가입이나 복잡한 절차 없이 <strong>공식 이메일</strong>을 통해 직접 빠르고 정확한 견적 상담을 진행합니다.
+        </p>
+      </section>
 
-    <!-- 안내 카드 그리드 -->
-    <div class="contact-grid">
-      <!-- 1. 대표 연락처 및 빠른 메일 발송 카드 -->
-      <div class="glass-card info-card">
-        <h2>공식 문의 접수처</h2>
-        <p class="desc">아래 대표 이메일로 작업 도안(AI, PSD, PDF 등)과 함께 요청사항을 보내주시면 담당자가 확인 후 신속히 회신드립니다.</p>
+      <!-- 안내 카드 그리드 -->
+      <div class="contact-grid">
+        <!-- 1. 대표 연락처 및 빠른 메일 발송 카드 -->
+        <div class="glass-card info-card">
+          <h2>공식 문의 접수처</h2>
+          <p class="desc">아래 대표 이메일로 작업 도안(AI)과 함께 요청사항을 보내주시면 담당자가 확인 후 신속히 회신드립니다.</p>
 
-        <!-- 대표 이메일 박스 -->
-        <div class="email-box">
-          <div class="email-text-wrap">
-            <span class="label">공식 접수 이메일</span>
-            <strong class="email-address">{{ officialEmail }}</strong>
+          <!-- 대표 이메일 박스 -->
+          <div class="email-box">
+            <div class="email-text-wrap">
+              <span class="label">공식 접수 이메일</span>
+              <strong class="email-address">{{ officialEmail }}</strong>
+            </div>
+            <button class="action-btn copy-btn email-copy-action-btn" @click="copyToClipboard(officialEmail, '이메일 주소가')">
+              {{ isEmailCopied ? '복사 완료! ✓' : '이메일 주소 복사' }}
+            </button>
           </div>
-          <button class="action-btn copy-btn email-copy-action-btn" @click="copyToClipboard(officialEmail, '이메일 주소가')">
-            {{ isEmailCopied ? '복사 완료! ✓' : '이메일 주소 복사' }}
-          </button>
-        </div>
 
-        <!-- 빠른 메일 열기 바로가기 버튼 그룹 -->
-        <div class="quick-mail-section">
-          <h3>자주 쓰는 메일로 바로 열기</h3>
-          <div class="quick-mail-buttons">
-            <!-- 기본 메일 앱 연동 (mailto) -->
-            <a :href="mailtoLink" class="mail-btn default-mail">
-              <span class="icon">✉️</span> 기본 메일 앱 열기
-            </a>
-            <!-- 네이버 메일 웹 작성창 바로가기 -->
-            <a :href="naverMailLink" target="_blank" rel="noopener noreferrer" class="mail-btn naver-mail">
-              <span class="icon">🟢</span> 네이버 메일 작성
-            </a>
-            <!-- 지메일 웹 작성창 바로가기 -->
-            <a :href="gmailLink" target="_blank" rel="noopener noreferrer" class="mail-btn gmail-mail">
-              <span class="icon">🔴</span> Gmail 작성
-            </a>
+          <!-- 빠른 메일 열기 바로가기 버튼 그룹 -->
+          <div class="quick-mail-section">
+            <h3>자주 쓰는 메일로 바로 열기</h3>
+            <div class="quick-mail-buttons">
+              <!-- 기본 메일 앱 연동 (mailto) -->
+              <a :href="mailtoLink" class="mail-btn default-mail">
+                <span class="icon">✉️</span> 기본 메일 앱 열기
+              </a>
+              <!-- 네이버 메일 웹 작성창 바로가기 -->
+              <a :href="naverMailLink" target="_blank" rel="noopener noreferrer" class="mail-btn naver-mail">
+                <span class="icon">🟢</span> 네이버 메일 작성
+              </a>
+              <!-- 지메일 웹 작성창 바로가기 -->
+              <a :href="gmailLink" target="_blank" rel="noopener noreferrer" class="mail-btn gmail-mail">
+                <span class="icon">🔴</span> Gmail 작성
+              </a>
+            </div>
+          </div>
+
+          <!-- 유의사항 안내 -->
+          <div class="notice-box">
+            <h4>💡 도안 파일 첨부 안내</h4>
+            <ul>
+              <li>인쇄 해상도 확보를 위해 <strong>AI(일러스트)</strong> 파일을 보내주세요.</li>
+            </ul>
           </div>
         </div>
 
-        <!-- 유의사항 안내 -->
-        <div class="notice-box">
-          <h4>💡 도안 파일 첨부 안내</h4>
-          <ul>
-            <li>인쇄 해상도 확보를 위해 <strong>AI(일러스트), PSD, 고해상도 PDF/PNG</strong> 파일을 권장합니다.</li>
-            <li>대용량 도안 파일은 메일 작성 시 대용량 파일 첨부 또는 클라우드 링크를 활용해 주세요.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 2. 이메일 문의 템플릿 복사 카드 -->
-      <div class="glass-card template-card">
-        <div class="template-header">
-          <div>
-            <h2>문의 양식 템플릿</h2>
-            <p class="sub-desc">아래 양식을 복사하여 메일 본문에 붙여넣고 내용을 채워 보내주세요.</p>
+        <!-- 2. 이메일 문의 템플릿 복사 카드 -->
+        <div class="glass-card template-card">
+          <div class="template-header">
+            <div>
+              <h2>문의 양식 템플릿</h2>
+              <p class="sub-desc">아래 양식을 복사하여 메일 본문에 붙여넣고 내용을 채워 보내주세요.</p>
+            </div>
+            <button class="action-btn primary-btn" @click="copyToClipboard(inquiryTemplate, '문의 양식이')">
+              {{ isTemplateCopied ? '양식 복사 완료! ✓' : '📋 문의 양식 복사하기' }}
+            </button>
           </div>
-          <button class="action-btn primary-btn" @click="copyToClipboard(inquiryTemplate, '문의 양식이')">
-            {{ isTemplateCopied ? '양식 복사 완료! ✓' : '📋 문의 양식 복사하기' }}
-          </button>
-        </div>
 
-        <!-- 템플릿 본문 프리뷰 박스 -->
-        <div class="template-body-box">
-          <pre><code>{{ inquiryTemplate }}</code></pre>
-        </div>
+          <!-- 템플릿 본문 프리뷰 박스 -->
+          <div class="template-body-box">
+            <pre><code>{{ inquiryTemplate }}</code></pre>
+          </div>
 
-        <div class="guide-tip">
-          <span>💡 <strong>Tip</strong>: 포트폴리오에서 보신 <strong>샘플 번호(예: No. 01)</strong>나 <strong>기법명(예: 후로킹 전사)</strong>을 기재해 주시면 더 빠르고 정확한 견적 산출이 가능합니다.</span>
+          <div class="guide-tip">
+            <span>💡 <strong>Tip 1</strong>: 포트폴리오에서 보신 <strong>샘플 번호(예: No. 01)</strong>나 <strong>기법명(예: 후로킹 전사)</strong>을 기재해 주시면 더 빠르고 정확한 견적 산출이 가능합니다.</span><br>
+            <span>💡 <strong>Tip 2</strong>: 기본 최소 의뢰 수량은 <strong>50장</strong>부터 진행 가능합니다.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -94,7 +96,7 @@
 import { ref, computed } from 'vue'
 
 // 1. 공식 대표 이메일 설정
-const officialEmail = ref('contact@greenpainting.com')
+const officialEmail = ref('water1234567@naver.com')
 
 // 2. 표준 문의 템플릿 내용
 const inquiryTemplate = ref(`[그린페인팅 도안 및 견적 문의]
@@ -108,7 +110,7 @@ const inquiryTemplate = ref(`[그린페인팅 도안 및 견적 문의]
 6. 희망 납기일: 
 7. 기타 요청사항 및 문의 내용: 
 
-※ 작업용 도안 파일(AI, PSD, 고화질 이미지)을 메일에 함께 첨부해 주세요.`)
+※ 작업용 도안 파일(AI)을 메일에 함께 첨부해 주세요.`)
 
 // 복사 완료 상태 토글 변수
 const isEmailCopied = ref(false)
@@ -162,31 +164,39 @@ const gmailLink = computed(() => {
 </script>
 
 <style scoped>
-.contact-container {
+/* 화면 가로 전체 100%를 채우는 최외곽 래퍼 */
+.contact-page-wrapper {
   position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 20px 120px;
-  animation: fadeIn 0.8s ease-out;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0fafd 0%, #e6f6f8 35%, #ffffff 100%);
   overflow: hidden;
+  animation: fadeIn 0.8s ease-out;
 }
 
-/* 물방울 배경 블롭 */
+/* 중앙 정렬 콘텐츠 컨테이너 */
+.contact-content-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 24px 130px;
+}
+
+/* 화면 양 끝으로 은은하게 퍼지는 물방울 블롭 */
 .water-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.45;
+  filter: blur(80px);
+  opacity: 0.5;
   pointer-events: none;
   z-index: 0;
 }
-.blob-1 { width: 450px; height: 400px; background: #cbf3f9; top: 0; left: -100px; }
-.blob-2 { width: 400px; height: 450px; background: #ccfbf1; top: 40%; right: -80px; }
+.blob-1 { width: 550px; height: 500px; background: #cbf3f9; top: -60px; left: -120px; }
+.blob-2 { width: 500px; height: 550px; background: #ccfbf1; top: 40%; right: -120px; }
 
 /* 헤더 */
 .contact-header {
-  position: relative;
-  z-index: 1;
   text-align: center;
   margin-bottom: 60px;
 }
@@ -209,7 +219,7 @@ const gmailLink = computed(() => {
 .badge-dot { width: 6px; height: 6px; background-color: #48b5c4; border-radius: 50%; }
 
 .page-title {
-  font-size: 2.8rem;
+  font-size: 2.9rem;
   font-weight: 900;
   color: #0f2c33;
   line-height: 1.3;
@@ -231,8 +241,6 @@ const gmailLink = computed(() => {
 
 /* 그리드 레이아웃 */
 .contact-grid {
-  position: relative;
-  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 35px;
@@ -243,7 +251,7 @@ const gmailLink = computed(() => {
 .glass-card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(210, 238, 242, 0.85);
+  border: 1px solid rgba(210, 238, 242, 0.9);
   border-radius: 32px;
   padding: 40px 35px;
   box-shadow: 0 10px 30px rgba(72, 181, 196, 0.08);
@@ -409,8 +417,8 @@ const gmailLink = computed(() => {
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
-  white-space: nowrap; /* 줄바꿈 방지 */
-  flex-shrink: 0;      /* 축소 방지 */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .copy-btn {
