@@ -10,31 +10,31 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: { title: '그린페인팅 | 의류 나염 · 특수 전사 전문' }
+    meta: { title: '그린 나염 | 의류 나염 · 특수 전사 전문' }
   },
   {
     path: '/intro',
     name: 'intro',
     component: IntroView,
-    meta: { title: '회사소개 | 그린페인팅' }
+    meta: { title: '회사소개 | 그린 나염' }
   },
   {
     path: '/collection',
     name: 'collection',
     component: CollectionView,
-    meta: { title: '작업 샘플 목록 | 그린페인팅' }
+    meta: { title: '작업 샘플 목록 | 그린 나염' }
   },
   {
     path: '/location',
     name: 'location',
     component: LocationView,
-    meta: { title: '오시는 길 | 그린페인팅' }
+    meta: { title: '오시는 길 | 그린 나염' }
   },
   {
     path: '/help',
     name: 'help',
     component: HelpView,
-    meta: { title: '도안 / 견적 문의 | 그린페인팅' }
+    meta: { title: '도안 / 견적 문의 | 그린 나염' }
   },
   // 존재하지 않는 잘못된 주소 접근 시 메인 페이지로 자동 이동
   {
