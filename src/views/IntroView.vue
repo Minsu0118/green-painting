@@ -1,19 +1,15 @@
 <template>
   <div class="intro-page-wrapper">
-    <!-- 화면 양 끝까지 확장되는 부드러운 물방울 배경 블롭 -->
-    <div class="water-blob blob-1"></div>
-    <div class="water-blob blob-2"></div>
-
     <div class="intro-content-container">
       <!-- 1. 헤더 섹션 -->
       <section class="page-header">
         <div class="badge">
           <span class="badge-dot"></span>
-          ABOUT GREEN PAINTING
+          ABOUT • 그린나염
         </div>
         <h1 class="page-title">
           기술과 신뢰로 완성하는 공장,<br>
-          <span class="gradient-text">그린나염</span>
+          <span class="highlight-text">그린나염</span>
         </h1>
         <p class="page-desc">
           그린나염은 26년 현장 노하우와 숙련된 장인 기술을 바탕으로<br>
@@ -95,47 +91,18 @@
 </script>
 
 <style scoped>
-/* 화면 가로 전체 100%를 차지하는 최외곽 래퍼 */
 .intro-page-wrapper {
-  position: relative;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f0fafd 0%, #e6f6f8 40%, #ffffff 100%);
+  background: #ffffff;
   overflow: hidden;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* 중앙 정렬 콘텐츠 컨테이너 */
 .intro-content-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 90px 24px 130px;
-}
-
-/* 화면 양 끝으로 은은하게 퍼지는 물방울 블롭 */
-.water-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.55;
-  pointer-events: none;
-  z-index: 0;
-}
-.blob-1 {
-  width: 550px;
-  height: 550px;
-  background: #cbf3f9;
-  top: -80px;
-  left: -120px;
-}
-.blob-2 {
-  width: 600px;
-  height: 600px;
-  background: #ccfbf1;
-  top: 35%;
-  right: -120px;
+  padding: 80px 24px 120px;
 }
 
 /* 1. 헤더 */
@@ -148,43 +115,44 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(72, 181, 196, 0.12);
-  border: 1px solid rgba(72, 181, 196, 0.35);
-  color: #1f7d8a;
-  padding: 7px 18px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  padding: 6px 16px;
   border-radius: 30px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
   margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .badge-dot {
   width: 6px;
   height: 6px;
-  background-color: #48b5c4;
+  background-color: #0d9488;
   border-radius: 50%;
 }
 
 .page-title {
-  font-size: 2.9rem;
-  font-weight: 900;
-  color: #0f2c33;
-  line-height: 1.3;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
   margin-bottom: 18px;
   word-break: keep-all;
+  letter-spacing: -0.5px;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #1b8a99 0%, #48b5c4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.highlight-text {
+  color: #0d9488;
 }
 
 .page-desc {
-  font-size: 1.1rem;
-  color: #607e84;
-  line-height: 1.7;
+  font-size: 1.08rem;
+  color: #64748b;
+  line-height: 1.75;
+  word-break: keep-all;
 }
 
 /* 2. 핵심 지표 */
@@ -194,121 +162,139 @@
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(210, 238, 242, 0.9);
-  border-radius: 30px;
-  padding: 50px 35px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 42px 30px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(72, 181, 196, 0.08);
-  transition: all 0.35s ease;
+  transition: all 0.25s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  border-color: #48b5c4;
-  box-shadow: 0 16px 35px rgba(72, 181, 196, 0.18);
+  transform: translateY(-4px);
+  border-color: #0d9488;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
 }
 
 .stat-label {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #79979d;
-  letter-spacing: 1px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.5px;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .stat-value {
-  font-size: 3.6rem;
+  font-size: 3.4rem;
   font-weight: 900;
-  color: #1f7d8a;
-  line-height: 1.1;
-  margin-bottom: 12px;
+  color: #0d9488;
+  line-height: 1;
+  margin-bottom: 14px;
   letter-spacing: -1px;
 }
 
 .stat-desc {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
-  color: #0f2c33;
+  color: #0f172a;
 }
 
 /* 3. 공정 프로세스 */
 .process-section {
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 48px;
 }
 
 .sub-tag {
-  color: #48b5c4;
+  color: #0d9488;
   font-weight: 800;
-  font-size: 0.85rem;
-  letter-spacing: 3px;
+  font-size: 0.8rem;
+  letter-spacing: 2.5px;
   display: block;
   margin-bottom: 8px;
 }
 
 .section-title h2 {
-  font-size: 2.2rem;
-  color: #0f2c33;
-  margin-bottom: 8px;
+  font-size: 2.1rem;
+  color: #0f172a;
+  margin-bottom: 10px;
   font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .section-title p {
-  color: #607e84;
-  font-size: 1.02rem;
+  color: #64748b;
+  font-size: 0.98rem;
 }
 
 .process-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .process-card {
-  background: white;
-  border: 1px solid rgba(195, 232, 237, 0.7);
-  border-radius: 26px;
-  padding: 35px 25px;
-  box-shadow: 0 8px 24px rgba(72, 181, 196, 0.05);
-  transition: all 0.3s ease;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 32px 24px;
+  transition: all 0.25s ease;
 }
 
 .process-card:hover {
-  transform: translateY(-6px);
-  border-color: #48b5c4;
-  box-shadow: 0 14px 30px rgba(72, 181, 196, 0.15);
+  transform: translateY(-4px);
+  border-color: #0d9488;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
 }
 
 .process-step {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 900;
-  color: #48b5c4;
-  margin-bottom: 14px;
+  color: #0d9488;
+  margin-bottom: 12px;
 }
 
 .process-card h3 {
-  font-size: 1.25rem;
-  color: #0f2c33;
-  font-weight: 800;
+  font-size: 1.15rem;
+  color: #0f172a;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
 .process-card p {
-  font-size: 0.92rem;
-  color: #607e84;
+  font-size: 0.9rem;
+  color: #64748b;
   line-height: 1.6;
+}
+
+/* 데스크톱 환경(4열 배치 시) 단계 간 연결 화살표 추가 */
+@media (min-width: 992px) {
+  .process-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .process-card:not(:last-child)::after {
+    content: "➔";
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    z-index: 2;
+    pointer-events: none;
+  }
 }
 
 /* 4. 하단 CTA */
@@ -317,61 +303,60 @@
 }
 
 .banner-inner {
-  background: linear-gradient(135deg, #48b5c4 0%, #208796 100%);
-  border-radius: 34px;
-  padding: 50px 55px;
+  background: #0f172a;
+  border-radius: 24px;
+  padding: 48px 52px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  color: #ffffff;
   flex-wrap: wrap;
-  gap: 25px;
-  box-shadow: 0 16px 40px rgba(72, 181, 196, 0.28);
+  gap: 24px;
 }
 
 .banner-pill {
-  background: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  padding: 5px 14px;
-  border-radius: 20px;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #5eead4;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   display: inline-block;
   margin-bottom: 10px;
 }
 
 .banner-text h2 {
-  font-size: 1.8rem;
-  font-weight: 900;
+  font-size: 1.75rem;
+  font-weight: 800;
   margin-bottom: 6px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
 }
 
 .banner-text p {
-  font-size: 1.02rem;
-  color: #e5f7f9;
+  font-size: 0.98rem;
+  color: #94a3b8;
 }
 
 .banner-btn {
-  background: #ffffff;
-  color: #176f7a;
-  padding: 16px 32px;
-  border-radius: 30px;
+  background: #0d9488;
+  color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: 800;
-  font-size: 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+  font-size: 0.92rem;
   transition: all 0.25s ease;
 }
 
 .banner-btn:hover {
-  background: #0f2c33;
-  color: white;
-  transform: translateY(-3px);
+  background: #14b8a6;
+  transform: translateY(-2px);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -380,7 +365,7 @@
   .banner-inner {
     flex-direction: column;
     text-align: center;
-    padding: 35px 24px;
+    padding: 36px 24px;
   }
 }
 </style>

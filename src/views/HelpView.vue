@@ -1,28 +1,24 @@
 <template>
   <div class="contact-page-wrapper">
-    <!-- 화면 양 끝까지 확장되는 부드러운 물방울 배경 블롭 -->
-    <div class="water-blob blob-1"></div>
-    <div class="water-blob blob-2"></div>
-
     <div class="contact-content-container">
       <!-- 헤더 섹션 -->
       <section class="contact-header">
         <div class="badge">
           <span class="badge-dot"></span>
-          CONTACT US
+          견적 문의 • 그린나염
         </div>
         <h1 class="page-title">
-          도안 및 견적 <span class="gradient-text">문의 안내</span>
+          도안 및 견적 <span class="highlight-text">문의 안내</span>
         </h1>
         <p class="page-desc">
-          그린나염은 회원가입이나 복잡한 절차 없이 <strong>공식 이메일</strong>을 통해 직접 빠르고 정확한 견적 상담을 진행합니다.
+          그린나염은 회원가입이나 복잡한 절차 없이 <strong>공식 이메일</strong>을 통해 빠르고 정확한 견적 상담을 진행합니다.
         </p>
       </section>
 
       <!-- 안내 카드 그리드 -->
       <div class="contact-grid">
         <!-- 1. 대표 연락처 및 빠른 메일 발송 카드 -->
-        <div class="glass-card info-card">
+        <div class="card-box info-card">
           <h2>공식 문의 접수처</h2>
           <p class="desc">아래 대표 이메일로 작업 도안(AI)과 함께 요청사항을 보내주시면 담당자가 확인 후 신속히 회신드립니다.</p>
 
@@ -66,7 +62,7 @@
         </div>
 
         <!-- 2. 이메일 문의 템플릿 복사 카드 -->
-        <div class="glass-card template-card">
+        <div class="card-box template-card">
           <div class="template-header">
             <div>
               <h2>문의 양식 템플릿</h2>
@@ -83,8 +79,8 @@
           </div>
 
           <div class="guide-tip">
-            <span>💡 <strong>Tip 1</strong>: 포트폴리오에서 보신 <strong>샘플 번호(예: No. 01)</strong>나 <strong>기법명(예: 후로킹 전사)</strong>을 기재해 주시면 더 빠르고 정확한 견적 산출이 가능합니다.</span><br>
-            <span>💡 <strong>Tip 2</strong>: 기본 최소 의뢰 수량은 <strong>50장</strong>부터 진행 가능합니다.</span>
+            <p>💡 <strong>Tip 1</strong>: 포트폴리오에서 보신 <strong>샘플 번호(예: No. 01)</strong>나 <strong>기법명(예: 후로킹 전사)</strong>을 기재해 주시면 더 빠르고 정확한 견적 산출이 가능합니다.</p>
+            <p>💡 <strong>Tip 2</strong>: 기본 최소 의뢰 수량은 <strong>50장</strong>부터 진행 가능합니다.</p>
           </div>
         </div>
       </div>
@@ -99,7 +95,7 @@ import { ref, computed } from 'vue'
 const officialEmail = ref('water1234567@naver.com')
 
 // 2. 표준 문의 템플릿 내용
-const inquiryTemplate = ref(`[그린페인팅 도안 및 견적 문의]
+const inquiryTemplate = ref(`[그린나염 도안 및 견적 문의]
 
 1. 업체명 / 담당자 성함: 
 2. 연락처(전화번호): 
@@ -144,7 +140,7 @@ const copyToClipboard = async (text, targetName) => {
 }
 
 // 3. 메일 앱 자동 링크 생성
-const mailSubject = encodeURIComponent('[그린페인팅] 나염/프린팅 견적 및 작업 문의')
+const mailSubject = encodeURIComponent('[그린나염] 나염/프린팅 견적 및 작업 문의')
 const mailBody = encodeURIComponent(inquiryTemplate.value)
 
 // ① 기본 mailto
@@ -164,124 +160,115 @@ const gmailLink = computed(() => {
 </script>
 
 <style scoped>
-/* 화면 가로 전체 100%를 채우는 최외곽 래퍼 */
+/* 페이지 최외곽 */
 .contact-page-wrapper {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f0fafd 0%, #e6f6f8 35%, #ffffff 100%);
+  background: #ffffff;
   overflow: hidden;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
 /* 중앙 정렬 콘텐츠 컨테이너 */
 .contact-content-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 90px 24px 130px;
+  padding: 80px 24px 120px;
 }
-
-/* 화면 양 끝으로 은은하게 퍼지는 물방울 블롭 */
-.water-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-}
-.blob-1 { width: 550px; height: 500px; background: #cbf3f9; top: -60px; left: -120px; }
-.blob-2 { width: 500px; height: 550px; background: #ccfbf1; top: 40%; right: -120px; }
 
 /* 헤더 */
 .contact-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(72, 181, 196, 0.12);
-  border: 1px solid rgba(72, 181, 196, 0.35);
-  color: #1f7d8a;
-  padding: 7px 18px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  padding: 6px 16px;
   border-radius: 30px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  margin-bottom: 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-.badge-dot { width: 6px; height: 6px; background-color: #48b5c4; border-radius: 50%; }
+.badge-dot { 
+  width: 6px; 
+  height: 6px; 
+  background-color: #0d9488; 
+  border-radius: 50%; 
+}
 
 .page-title {
-  font-size: 2.9rem;
-  font-weight: 900;
-  color: #0f2c33;
-  line-height: 1.3;
-  margin-bottom: 16px;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 14px;
+  word-break: keep-all;
   letter-spacing: -0.5px;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #1b8a99 0%, #48b5c4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.highlight-text {
+  color: #0d9488;
 }
 
 .page-desc {
-  font-size: 1.1rem;
-  color: #607e84;
-  line-height: 1.7;
+  font-size: 1.08rem;
+  color: #64748b;
+  line-height: 1.65;
 }
 
 /* 그리드 레이아웃 */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 35px;
+  gap: 28px;
   align-items: start;
 }
 
-/* 카드 공통 스타일 (글래스모피즘) */
-.glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(210, 238, 242, 0.9);
-  border-radius: 32px;
-  padding: 40px 35px;
-  box-shadow: 0 10px 30px rgba(72, 181, 196, 0.08);
+/* 카드 공통 스타일 */
+.card-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
 }
 
 .info-card h2, .template-header h2 {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 800;
-  color: #0f2c33;
+  color: #0f172a;
   margin-bottom: 8px;
+  letter-spacing: -0.3px;
 }
 
 .desc, .sub-desc {
-  color: #607e84;
+  color: #64748b;
   font-size: 0.92rem;
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 /* 대표 이메일 박스 */
 .email-box {
-  background: #f2f9fa;
-  border: 1px solid rgba(195, 232, 237, 0.8);
-  padding: 22px;
-  border-radius: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  gap: 15px;
+  margin-bottom: 28px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
@@ -292,110 +279,106 @@ const gmailLink = computed(() => {
 }
 
 .email-text-wrap .label {
-  font-size: 0.8rem;
-  color: #79979d;
+  font-size: 0.78rem;
+  color: #64748b;
   font-weight: 700;
 }
 
 .email-address {
-  font-size: 1.15rem;
-  color: #0f2c33;
-  font-weight: 900;
+  font-size: 1.05rem;
+  color: #0f172a;
+  font-weight: 800;
   word-break: break-all;
 }
 
 /* 빠른 메일 발송 버튼 그룹 */
 .quick-mail-section {
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .quick-mail-section h3 {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 800;
-  color: #0f2c33;
+  color: #0f172a;
   margin-bottom: 12px;
 }
 
 .quick-mail-buttons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .mail-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 13px 20px;
-  border-radius: 16px;
-  font-size: 0.95rem;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
-  border: 1px solid rgba(195, 232, 237, 0.7);
+  border: 1px solid #e2e8f0;
   white-space: nowrap;
 }
 
 .mail-btn .icon {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .default-mail {
-  background: #f0f7f8;
-  color: #0f2c33;
+  background: #f8fafc;
+  color: #0f172a;
 }
 
 .default-mail:hover {
-  background: #e2f1f3;
-  transform: translateY(-1px);
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .naver-mail {
   background: #03c75a;
-  color: white;
+  color: #ffffff;
   border-color: #03c75a;
-  box-shadow: 0 4px 12px rgba(3, 199, 90, 0.2);
 }
 
 .naver-mail:hover {
   background: #02b150;
-  transform: translateY(-1px);
 }
 
 .gmail-mail {
   background: #ea4335;
-  color: white;
+  color: #ffffff;
   border-color: #ea4335;
-  box-shadow: 0 4px 12px rgba(234, 67, 53, 0.2);
 }
 
 .gmail-mail:hover {
   background: #d93025;
-  transform: translateY(-1px);
 }
 
 /* 안내 박스 */
 .notice-box {
-  background: #eef9fa;
-  border: 1px solid rgba(72, 181, 196, 0.35);
-  padding: 20px;
-  border-radius: 20px;
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  padding: 18px;
+  border-radius: 16px;
 }
 
 .notice-box h4 {
-  color: #176f7a;
-  font-size: 0.9rem;
+  color: #0d9488;
+  font-size: 0.88rem;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .notice-box ul {
   margin: 0;
   padding-left: 18px;
-  color: #436a70;
+  color: #334155;
   font-size: 0.86rem;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
 /* 템플릿 카드 */
@@ -404,16 +387,15 @@ const gmailLink = computed(() => {
   justify-content: space-between;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
-/* 버튼 줄바꿈 방지 및 스타일 최적화 */
 .action-btn {
-  padding: 11px 20px;
-  border-radius: 20px;
-  font-size: 0.88rem;
-  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
@@ -422,35 +404,34 @@ const gmailLink = computed(() => {
 }
 
 .copy-btn {
-  background: white;
+  background: #ffffff;
   border: 1px solid #cbd5e1;
-  color: #334155;
+  color: #0f172a;
 }
 
 .copy-btn:hover {
   background: #f8fafc;
-  border-color: #94a3b8;
+  border-color: #0f172a;
 }
 
 .email-copy-action-btn {
-  min-width: 125px;
+  min-width: 120px;
   text-align: center;
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, #48b5c4 0%, #2ba5b5 100%);
-  color: white;
-  box-shadow: 0 4px 14px rgba(72, 181, 196, 0.3);
+  background: #0f172a;
+  color: #ffffff;
 }
 
 .primary-btn:hover {
-  transform: translateY(-2px);
+  background: #0d9488;
 }
 
 .template-body-box {
-  background: #0f252a;
-  border-radius: 20px;
-  padding: 22px;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 20px;
   overflow-x: auto;
 }
 
@@ -459,27 +440,35 @@ const gmailLink = computed(() => {
 }
 
 .template-body-box code {
-  color: #e5f4f6;
+  color: #f8fafc;
   font-family: 'Consolas', 'Courier New', monospace;
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.88rem;
+  line-height: 1.65;
   white-space: pre-wrap;
   word-break: break-all;
 }
 
 .guide-tip {
-  margin-top: 15px;
+  margin-top: 16px;
   background: #fffbeb;
   border: 1px solid #fef3c7;
-  padding: 14px 18px;
-  border-radius: 16px;
-  font-size: 0.86rem;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 0.85rem;
   color: #92400e;
   line-height: 1.55;
 }
 
+.guide-tip p {
+  margin: 0;
+}
+
+.guide-tip p + p {
+  margin-top: 6px;
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 

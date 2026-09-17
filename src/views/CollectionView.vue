@@ -1,24 +1,19 @@
 <template>
   <div class="portfolio-page-wrapper">
-    <!-- 화면 양 끝까지 확장되는 부드러운 물방울 배경 블롭 -->
-    <div class="water-blob blob-1"></div>
-    <div class="water-blob blob-2"></div>
-    <div class="water-blob blob-3"></div>
-
     <div class="portfolio-content-container">
       <!-- 헤더 영역 -->
       <section class="portfolio-header">
         <div class="badge">
           <span class="badge-dot"></span>
-          PORTFOLIO
+          PORTFOLIO • 그린나염
         </div>
         <h1 class="page-title">
-          그린나염 <span class="gradient-text">작업 포트폴리오</span>
+          그린나염 <span class="highlight-text">작업 포트폴리오</span>
         </h1>
         <p class="page-desc">그린나염의 대표 인쇄 및 나염 기법별 실제 작업 샘플입니다.</p>
       </section>
 
-      <!-- 1. 주요 카테고리 필터 버튼 (4개로 명확하게 통합) -->
+      <!-- 1. 주요 카테고리 필터 버튼 -->
       <div class="category-tabs">
         <button 
           v-for="cat in categories" 
@@ -30,7 +25,7 @@
         </button>
       </div>
 
-      <!-- 2. 선택된 대분류 가이드 박스 (글래스 스타일) -->
+      <!-- 2. 선택된 대분류 가이드 박스 -->
       <div class="technique-summary-box">
         <div class="summary-content">
           <span class="summary-badge">{{ currentCategoryInfo.name }}</span>
@@ -51,16 +46,14 @@
           @click="openModal(item)"
         >
           <div class="card-image-box">
-            <!-- 문의 시 활용할 샘플 식별 번호 -->
             <span class="sample-no">NO. {{ item.no }}</span>
             <img :src="item.img" :alt="item.title" />
             <div class="hover-overlay">
-              <span>확대 및 상세보기 🔍</span>
+              <span>상세보기 🔍</span>
             </div>
           </div>
           <div class="card-info">
             <div class="card-meta">
-              <span class="no-tag">No. {{ item.no }}</span>
               <span class="cat-tag">{{ item.techniqueDetail }}</span>
             </div>
             <h3>{{ item.title }}</h3>
@@ -116,13 +109,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-// -------------------------------------------------------------
-// 1. 이미지 파일 Import (Assets 폴더 매핑)
-// -------------------------------------------------------------
-
-// DTG 디지털 프린트 (9개)
+// DTG 디지털 프린트
 import dtg01 from '@/assets/images/dtg-digital-01.jpg'
 import dtg02 from '@/assets/images/dtg-digital-02.jpg'
 import dtg03 from '@/assets/images/dtg-digital-03.jpg'
@@ -133,7 +122,7 @@ import dtg07 from '@/assets/images/dtg-digital-07.jpg'
 import dtg08 from '@/assets/images/dtg-digital-08.jpg'
 import dtg09 from '@/assets/images/dtg-digital-09.jpg'
 
-// 졸 나염 시리즈 (기본 17개 + 크랙, 니트, 발포)
+// 졸 나염 시리즈
 import jolBasic01 from '@/assets/images/jol-basic-01.jpg'
 import jolBasic02 from '@/assets/images/jol-basic-02.jpg'
 import jolBasic03 from '@/assets/images/jol-basic-03.jpg'
@@ -156,7 +145,7 @@ import jolCrack01 from '@/assets/images/jol-crack-01.jpg'
 import jolKnit01 from '@/assets/images/jol-knit-01.jpg'
 import jolPuff01 from '@/assets/images/jol-puff-01.jpg'
 
-// 전사 시리즈 (DTF, 후로킹, 호일, 글리터, 레이저커팅, 발포전사, 승화전사)
+// 전사 시리즈
 import transferDtf01 from '@/assets/images/transfer-dtf-01.jpg'
 import transferDtf02 from '@/assets/images/transfer-dtf-02.jpg'
 import transferDtf03 from '@/assets/images/transfer-dtf-03.jpg'
@@ -176,9 +165,6 @@ import transferSublimation01 from '@/assets/images/transfer-sublimation-01.jpg'
 import transferSublimation02 from '@/assets/images/transfer-sublimation-02.jpg'
 import transferSublimation03 from '@/assets/images/transfer-sublimation-03.jpg'
 
-// -------------------------------------------------------------
-// 2. 대분류 카테고리 버튼 정의 (4개 버튼)
-// -------------------------------------------------------------
 const categories = [
   { 
     name: 'ALL', 
@@ -202,9 +188,15 @@ const selectedCategory = ref('ALL')
 const currentCategoryInfo = ref(categories[0])
 const activeModalItem = ref(null)
 
-// -------------------------------------------------------------
-// 3. 포트폴리오 데이터 구성 (특징/스펙 및 설명문 제거)
-// -------------------------------------------------------------
+// 모달 오픈 시 배경 스크롤 차단 설정
+watch(activeModalItem, (newVal) => {
+  if (newVal) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
+
 const portfolioList = ref([
   // --- [디지털 프린트] (1 ~ 9) ---
   { id: 1, no: '01', category: '디지털 프린트', techniqueDetail: '디지털 프린트 (DTG)', title: 'DTG 고해상도 그래픽 프린트 01', img: dtg01 },
@@ -258,9 +250,6 @@ const portfolioList = ref([
   { id: 45, no: '45', category: '전사 인쇄', techniqueDetail: '승화 전사', title: '기능성 승화 전사 03', img: transferSublimation03 }
 ])
 
-// -------------------------------------------------------------
-// 4. 필터링 및 모달 클릭 이벤트 로직
-// -------------------------------------------------------------
 const selectCategory = (cat) => {
   selectedCategory.value = cat.name
   currentCategoryInfo.value = cat
@@ -281,209 +270,197 @@ const closeModal = () => {
 </script>
 
 <style scoped>
-/* 화면 가로 전체 100%를 채우는 최외곽 래퍼 */
+/* 페이지 전체 */
 .portfolio-page-wrapper {
-  position: relative;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f0fafd 0%, #e6f6f8 35%, #ffffff 100%);
+  background: #ffffff;
   overflow: hidden;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* 중앙 정렬 콘텐츠 컨테이너 */
+/* 중앙 정렬 컨테이너 */
 .portfolio-content-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 90px 24px 130px;
+  padding: 80px 24px 120px;
 }
 
-/* 화면 양 끝으로 넓게 퍼지는 물방울 블롭 */
-.water-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-}
-.blob-1 { width: 550px; height: 500px; background: #cbf3f9; top: -60px; left: -140px; }
-.blob-2 { width: 500px; height: 550px; background: #ccfbf1; top: 40%; right: -120px; }
-.blob-3 { width: 600px; height: 600px; background: #dff6f9; bottom: 5%; left: -100px; }
-
-/* 헤더 */
+/* 헤더 영역 */
 .portfolio-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(72, 181, 196, 0.12);
-  border: 1px solid rgba(72, 181, 196, 0.35);
-  color: #1f7d8a;
-  padding: 7px 18px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  padding: 6px 16px;
   border-radius: 30px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  margin-bottom: 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-.badge-dot { width: 6px; height: 6px; background-color: #48b5c4; border-radius: 50%; }
+.badge-dot { 
+  width: 6px; 
+  height: 6px; 
+  background-color: #0d9488; 
+  border-radius: 50%; 
+}
 
 .page-title {
-  font-size: 2.9rem;
-  font-weight: 900;
-  color: #0f2c33;
-  line-height: 1.3;
-  margin-bottom: 16px;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 14px;
   word-break: keep-all;
+  letter-spacing: -0.5px;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #1b8a99 0%, #48b5c4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.highlight-text {
+  color: #0d9488;
 }
 
-.page-desc { font-size: 1.1rem; color: #607e84; line-height: 1.7; }
+.page-desc { 
+  font-size: 1.08rem; 
+  color: #64748b; 
+}
 
 /* 1. 카테고리 탭 버튼 */
 .category-tabs {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 22px;
+  gap: 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(195, 232, 237, 0.9);
-  color: #52737a;
-  padding: 12px 26px;
-  border-radius: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  padding: 10px 22px;
+  border-radius: 20px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .filter-btn:hover {
-  border-color: #48b5c4;
-  color: #1f7d8a;
+  border-color: #0f172a;
+  color: #0f172a;
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, #48b5c4 0%, #2ba5b5 100%);
-  color: white;
-  border-color: #48b5c4;
-  box-shadow: 0 6px 20px rgba(72, 181, 196, 0.35);
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
 }
 
 /* 2. 대분류 요약 가이드 박스 */
 .technique-summary-box {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(210, 238, 242, 0.9);
-  border-radius: 24px;
-  padding: 20px 30px;
-  margin-bottom: 50px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 18px 24px;
+  margin-bottom: 40px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(72, 181, 196, 0.06);
 }
 
 .summary-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .summary-badge {
-  background: #48b5c4;
-  color: white;
-  padding: 5px 14px;
-  border-radius: 14px;
-  font-weight: 800;
-  font-size: 0.85rem;
+  background: #0f172a;
+  color: #5eead4;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.8rem;
 }
 
 .summary-content p {
-  color: #0f766e;
-  font-size: 0.96rem;
+  color: #475569;
+  font-size: 0.92rem;
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .empty-box {
   text-align: center;
   padding: 80px 20px;
   background: #f8fafc;
-  border-radius: 20px;
+  border-radius: 16px;
   color: #94a3b8;
+  border: 1px solid #e2e8f0;
 }
 
 /* 3. 갤러리 그리드 */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .gallery-card {
-  background: white;
-  border-radius: 28px;
+  background: #ffffff;
+  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(195, 232, 237, 0.8);
-  box-shadow: 0 8px 24px rgba(72, 181, 196, 0.06);
+  border: 1px solid #e2e8f0;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
 }
 
 .gallery-card:hover {
-  transform: translateY(-8px);
-  border-color: #48b5c4;
-  box-shadow: 0 16px 35px rgba(72, 181, 196, 0.18);
+  border-color: #0d9488;
 }
 
 .card-image-box {
   position: relative;
-  height: 280px;
+  height: 250px;
   overflow: hidden;
-  background: #f4fafb;
+  background: #f8fafc;
 }
 
 .sample-no {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  background: rgba(15, 44, 51, 0.85);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  top: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   z-index: 2;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
 }
 
 .card-image-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
 
 .gallery-card:hover .card-image-box img {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
 .hover-overlay {
@@ -492,23 +469,22 @@ const closeModal = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 44, 51, 0.45);
+  background: rgba(15, 23, 42, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease;
 }
 
 .hover-overlay span {
-  color: white;
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.8);
-  padding: 9px 20px;
-  border-radius: 25px;
-  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.6);
 }
 
 .gallery-card:hover .hover-overlay {
@@ -516,36 +492,27 @@ const closeModal = () => {
 }
 
 .card-info {
-  padding: 24px;
+  padding: 20px;
 }
 
 .card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.no-tag {
-  color: #48b5c4;
-  font-weight: 900;
-  font-size: 0.88rem;
+  margin-bottom: 6px;
 }
 
 .cat-tag {
-  color: #176f7a;
-  font-size: 0.8rem;
+  color: #0d9488;
+  font-size: 0.78rem;
   font-weight: 700;
-  background: #eef8f9;
-  padding: 3px 10px;
-  border-radius: 8px;
 }
 
 .card-info h3 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #0f2c33;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 4. 모달 팝업 스타일 */
@@ -555,52 +522,52 @@ const closeModal = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 44, 51, 0.65);
+  background: rgba(15, 23, 42, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
 }
 
 .modal-card {
-  background: white;
-  border-radius: 32px;
+  background: #ffffff;
+  border-radius: 24px;
   width: 92%;
-  max-width: 950px;
+  max-width: 900px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: modalIn 0.3s ease-out;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: modalIn 0.25s ease-out;
 }
 
 .modal-close-btn {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: #f1f8f9;
+  background: #f1f5f9;
   border: none;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   z-index: 10;
-  color: #607e84;
+  color: #64748b;
   transition: all 0.2s;
 }
 
 .modal-close-btn:hover {
-  background: #e2f1f3;
-  color: #0f2c33;
+  background: #0f172a;
+  color: #ffffff;
 }
 
 .modal-body {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  padding: 35px;
-  gap: 35px;
+  grid-template-columns: 1fr 1fr;
+  padding: 36px;
+  gap: 32px;
 }
 
 .modal-image-area {
@@ -611,15 +578,15 @@ const closeModal = () => {
 
 .modal-image-area img {
   width: 100%;
-  border-radius: 22px;
+  border-radius: 16px;
   object-fit: cover;
-  max-height: 480px;
-  box-shadow: 0 8px 24px rgba(72, 181, 196, 0.12);
+  max-height: 420px;
+  border: 1px solid #e2e8f0;
 }
 
 .zoom-notice {
-  font-size: 0.8rem;
-  color: #79979d;
+  font-size: 0.78rem;
+  color: #94a3b8;
   text-align: center;
 }
 
@@ -630,61 +597,61 @@ const closeModal = () => {
 }
 
 .modal-sample-no {
-  color: #48b5c4;
-  font-weight: 900;
-  font-size: 0.92rem;
-  letter-spacing: 1px;
+  color: #0d9488;
+  font-weight: 800;
+  font-size: 0.88rem;
 }
 
 .modal-header-info h2 {
-  font-size: 1.55rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  color: #0f2c33;
-  margin: 6px 0 15px 0;
+  color: #0f172a;
+  margin: 4px 0 16px 0;
+  letter-spacing: -0.3px;
 }
 
 .info-group {
-  background: #f4fafb;
-  border: 1px solid #e2f1f3;
-  padding: 18px 20px;
-  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .info-row {
   display: flex;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .info-row .label {
-  width: 90px;
-  color: #607e84;
+  width: 80px;
+  color: #64748b;
   font-weight: 600;
 }
 
 .info-row .val {
-  color: #0f2c33;
+  color: #0f172a;
   font-weight: 700;
 }
 
 .info-row .val.highlight {
-  color: #176f7a;
+  color: #0d9488;
   font-weight: 800;
 }
 
 .inquiry-guide {
-  background: #eef9fa;
-  border: 1px solid rgba(72, 181, 196, 0.35);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 .inquiry-guide p {
   font-size: 0.88rem;
-  color: #0f766e;
+  color: #475569;
   margin-bottom: 14px;
   line-height: 1.55;
 }
@@ -692,28 +659,27 @@ const closeModal = () => {
 .modal-inquiry-btn {
   display: block;
   text-align: center;
-  background: linear-gradient(135deg, #48b5c4 0%, #2ba5b5 100%);
-  color: white;
+  background: #0d9488;
+  color: #ffffff;
   padding: 13px 0;
-  border-radius: 20px;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: 800;
-  font-size: 0.98rem;
-  box-shadow: 0 6px 18px rgba(72, 181, 196, 0.3);
-  transition: transform 0.2s;
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: all 0.2s ease;
 }
 
 .modal-inquiry-btn:hover {
-  transform: translateY(-2px);
+  background: #14b8a6;
 }
 
 @keyframes modalIn {
-  from { opacity: 0; transform: scale(0.95); }
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -721,7 +687,7 @@ const closeModal = () => {
   .page-title { font-size: 2.1rem; }
   .modal-body {
     grid-template-columns: 1fr;
-    padding: 25px;
+    padding: 24px;
   }
 }
 </style>
