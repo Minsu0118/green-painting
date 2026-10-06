@@ -1,5 +1,9 @@
 <template>
   <div class="home-container">
+
+    <!-- 검색엔진(SEO) 및 접근성 전용 H1 태그 추가 -->
+    <h1 class="sr-only">그린나염 - 의류 나염 및 특수 전사 전문 가공 공장</h1>
+
     <!-- 1. 히어로 섹션 -->
     <section class="hero-section">
       <div class="hero-content">
@@ -8,10 +12,10 @@
           의류 나염 · 특수 전사 전문
         </div>
 
-        <h1 class="hero-title">
+        <h2 class="hero-title">
           원단 위에 부드럽게 스며드는<br />
           <span class="highlight-text">의류 나염 · 특수 전사</span> 전문 공장
-        </h1>
+        </h2>
 
         <p class="hero-desc">
           졸 나염부터 DTG 디지털 프린트, DTF 전사, 3D 입체 발포, 벨벳 후로킹까지.<br />
@@ -514,5 +518,18 @@
     text-align: center;
     padding: 32px 20px;
   }
+}
+
+/* 검색엔진 및 시각장애인 전용 숨김 클래스 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 </style>
